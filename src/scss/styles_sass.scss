@@ -1,0 +1,29 @@
+// non-overriding imports START
+
+@import 'external/reset_reloaded';
+@import 'external/font_awesome';
+
+@import 'partials/global_parts';
+@import 'partials/fonts_and_colors';
+@import 'components/custom_checkbox';
+@import 'components/custom_dropdown';
+
+// non-overriding imports END
+
+main {
+    display: block; // IE fix
+}
+
+body {
+    font-family: $font-default;
+}
+
+// imports for override START
+
+@import 'partials/media';
+@import 'partials/media_query';
+@import 'partials/bootstrap_grid';
+// 'auxiliary_css': pure CSS overrides file for non-sass users
+@import 'auxiliary_css';
+
+// imports for override END

@@ -1,0 +1,145 @@
+<section id="main-slider" class="dragdealer">
+            <div id="slider-container" class="handle">
+                <div class="slider-img">
+                    <div class="container">
+                        <div class="slider-img-info">
+                            <div>
+                                <span class="slider-info-text slide-text-1">Naselje:</span>
+                                <span class="slider-info-text">Pešćenica</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Kat:</span>
+                                <span class="slider-info-text">3.</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Veličina:</span>
+                                <span class="slider-info-text">50m2</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Cijena:</span>
+                                <span class="slider-info-text">300.000 eura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-img">
+                    <div class="container">
+                        <div class="slider-img-info">
+                            <div>
+                                <span class="slider-info-text slide-text-1">Naselje:</span>
+                                <span class="slider-info-text">Pešćenica</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Kat:</span>
+                                <span class="slider-info-text">3.</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Veličina:</span>
+                                <span class="slider-info-text">50m2</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Cijena:</span>
+                                <span class="slider-info-text">300.000 eura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-img">
+                    <div class="container">
+                        <div class="slider-img-info">
+                            <div>
+                                <span class="slider-info-text slide-text-1">Naselje:</span>
+                                <span class="slider-info-text">Pešćenica</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Kat:</span>
+                                <span class="slider-info-text">3.</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Veličina:</span>
+                                <span class="slider-info-text">50m2</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Cijena:</span>
+                                <span class="slider-info-text">300.000 eura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-img">
+                    <div class="container">
+                        <div class="slider-img-info">
+                            <div>
+                                <span class="slider-info-text slide-text-1">Naselje:</span>
+                                <span class="slider-info-text">Pešćenica</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Kat:</span>
+                                <span class="slider-info-text">3.</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Veličina:</span>
+                                <span class="slider-info-text">50m2</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Cijena:</span>
+                                <span class="slider-info-text">300.000 eura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-img">
+                    <div class="container">
+                        <div class="slider-img-info">
+                            <div>
+                                <span class="slider-info-text slide-text-1">Naselje:</span>
+                                <span class="slider-info-text">Pešćenica</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Kat:</span>
+                                <span class="slider-info-text">3.</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Veličina:</span>
+                                <span class="slider-info-text">50m2</span>
+                            </div>
+                            <div>
+                                <span class="slider-info-text slide-text-1">Cijena:</span>
+                                <span class="slider-info-text">300.000 eura</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		
+		    function initSlider() {
+        var sliderItemContainWidth = $(".slider-img").width();
+        var numberOfSliderItems = $(".slider-img").length;
+        var sliderContainerWidth = sliderItemContainWidth * numberOfSliderItems;
+
+        $("#slider-container").css("width", sliderContainerWidth + "px");
+
+        var step1 = 0;
+        var step2 = 0;
+
+        var draggie = new Dragdealer("main-slider", {
+            steps: numberOfSliderItems,
+            speed: 0.3,
+            requestAnimationFrame: true,
+            dragStartCallback: function (x, y) {
+                step1 = draggie.getStep()[0];
+            },
+            dragStopCallback: function (x, y) {
+                step2 = draggie.getStep()[0];
+                if (step2 != step1) {
+                    $(".slider-img-info").hide();
+                    setTimeout(function () {
+                        $(".slider-img-info").hide();
+                        $(".slider-img").eq(step2 - 1).children().children(".slider-img-info").fadeIn();
+                    }, 700);
+                }
+            }
+        });
+
+    }

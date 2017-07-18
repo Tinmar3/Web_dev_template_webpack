@@ -1,0 +1,38 @@
+.dropdown {
+    min-width: 200px;
+    display: inline-block;
+    position: relative;
+    .dropdown-main {
+        @extend %flex-center;
+        @extend %no-text-select;
+        padding: 5px 10px;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+    .dropdown-arrow {
+        margin-left: auto;
+        font-size: $font-13;
+    }
+    @at-root .dropdown-items-list {
+        @include absolute(100%, 0, '', 0);
+        @extend %transition;
+        z-index: 2;
+        visibility: hidden;
+        opacity: 0;
+        background-color: wheat;
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        .opened & {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    .dropdown-item {
+        padding: 3px 10px;
+        cursor: pointer;
+        &:hover {
+            color: red;
+        }
+    }
+}

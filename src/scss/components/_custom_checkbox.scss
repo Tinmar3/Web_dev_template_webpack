@@ -1,0 +1,15 @@
+.checkbox-1 .checkbox-real {
+    position: relative;
+    z-index: -9999;
+}
+
+.checkbox-1 .checkbox-fake {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: red;
+}
+
+.checkbox-1 input:checked+.checkbox-fake {
+    background: blue;
+}
