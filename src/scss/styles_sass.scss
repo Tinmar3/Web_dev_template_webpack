@@ -1,29 +1,53 @@
 // non-overriding imports START
-
 @import 'external/reset_reloaded';
 @import 'external/font_awesome';
-
-@import 'partials/global_parts';
-@import 'partials/fonts_and_colors';
+@import 'shared/global_parts';
+@import 'shared/fonts_and_colors';
+@import 'shared/typography';
 @import 'components/custom_checkbox';
 @import 'components/custom_dropdown';
-
+@import 'pages/projects';
+@import 'pages/partials/header';
 // non-overriding imports END
-
 main {
     display: block; // IE fix
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     font-family: $font-default;
+    background-color: $main-color;
+    color: $secondary-color;
+    font-weight: 600;
+}
+
+.grid {
+    max-width: 1060px;
+    padding: 0 20px;
+}
+
+.easy-overlay {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    max-width: 946px;
+    background: -webkit-linear-gradient(top, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .05) 70%);
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .05) 70%);
+    z-index: 7;
 }
 
 // imports for override START
-
-@import 'partials/media';
-@import 'partials/media_query';
-@import 'partials/bootstrap_grid';
+@import 'shared/media';
+@import 'shared/media_query';
+@import 'shared/bootstrap_grid';
 // 'auxiliary_css': pure CSS overrides file for non-sass users
 @import 'auxiliary_css';
-
 // imports for override END

@@ -1,0 +1,134 @@
+$large: 1200px;
+$medium: 992px;
+$small: 768px;
+$smallest: 450px;
+//
+@mixin media($breakpoint...) {
+    @if(length($breakpoint)==2) {
+        $minOrMax1: "";
+        $minOrMax2: "";
+        $item1: nth($breakpoint, 1);
+        $item2: nth($breakpoint, 2);
+        $minmax1: str-slice($item1, 1, 1);
+        $breakStr1: str-slice($item1, 2);
+        $minmax2: str-slice($item2, 1, 1);
+        $breakStr2: str-slice($item2, 2);
+        @if($minmax1=='<') {
+            $minOrMax1: "max-width: ";
+        }
+        @else {
+            $minOrMax1: "min-width: ";
+        }
+        @if($minmax2=='<') {
+            $minOrMax2: "max-width: ";
+        }
+        @else {
+            $minOrMax2: "min-width: ";
+        }
+        $break1: "";
+        $isBr1Number: type-of(number($breakStr1))=='number';
+        @if($isBr1Number) {
+            $break1: number($breakStr1) + 'px';
+        }
+        @else {
+            @if($breakStr1=='large') {
+                $break1: $large;
+            }
+            @else if($breakStr1=='medium') {
+                $break1: $medium;
+            }
+            @else if($breakStr1=='small') {
+                $break1: $small;
+            }
+            @else if($breakStr1=='smallest') {
+                $break1: $smallest;
+            }
+        }
+        $break2: "";
+        $isBr2Number: type-of(number($breakStr2))=='number';
+        @if($isBr2Number) {
+            $break2: number($breakStr2) + 'px';
+        }
+        @else {
+            @if($breakStr2=='large') {
+                $break2: $large;
+            }
+            @else if($breakStr2=='medium') {
+                $break2: $medium;
+            }
+            @else if($breakStr2=='small') {
+                $break2: $small;
+            }
+            @else if($breakStr2=='smallest') {
+                $break2: $smallest;
+            }
+        }
+        @media (unquote($minOrMax1 + $break1)) and (unquote($minOrMax2 + $break2)) {
+            @content;
+        }
+    }
+    @else if (length($breakpoint)==1) {
+        $minmax: str-slice(nth($breakpoint, 1), 1, 1);
+        $breakStr: str-slice(nth($breakpoint, 1), 2);
+        $break: "";
+        $isNumber: type-of(number($breakStr))=='number';
+        @if($isNumber) {
+            $break: number($breakStr) + 'px';
+        }
+        @else {
+            @if($breakStr=='large') {
+                $break: $large;
+            }
+            @else if($breakStr=='medium') {
+                $break: $medium;
+            }
+            @else if($breakStr=='small') {
+                $break: $small;
+            }
+            @else if($breakStr=='smallest') {
+                $break: $smallest;
+            }
+        }
+        @if($minmax=='<') {
+            @media (max-width: $break) {
+                @content;
+            }
+        }
+        @else if($minmax=='>') {
+            @media (min-width: $break) {
+                @content;
+            }
+        }
+    }
+}
+
+@function number($value) {
+    @if type-of($value)=='number' {
+        @return $value;
+    }
+    @else if type-of($value) !='string' {
+        $_: log('Value for `to-number` should be a number or a string.');
+    }
+    $result: 0;
+    $digits: 0;
+    $minus: str-slice($value, 1, 1)=='-';
+    $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+    @for $i from if($minus, 2, 1) through str-length($value) {
+        $character: str-slice($value, $i, $i);
+        @if not (index(map-keys($numbers), $character) or $character=='.') {
+            @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+        }
+        @if $character=='.' {
+            $digits: 1;
+        }
+        @else if $digits==0 {
+            $result: $result * 10 + map-get($numbers, $character);
+        }
+        @else {
+            $digits: $digits * 10;
+            $result: $result + map-get($numbers, $character) / $digits;
+        }
+    }
+    @return if($minus, -$result, $result);
+    ;
+}

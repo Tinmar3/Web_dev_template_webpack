@@ -11,7 +11,7 @@
     }
     .dropdown-arrow {
         margin-left: auto;
-        font-size: $font-13;
+        font-size: 13px;
     }
     @at-root .dropdown-items-list {
         @include absolute(100%, 0, '', 0);
