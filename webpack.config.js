@@ -20,16 +20,26 @@ module.exports = {
                 test: /\.js$/,
                 use: [
                     {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['es2015-without-strict']
-                        }
+                        loader: 'babel-loader'
                     }
                 ]
             },
             {
                 test: /\.exec\.js$/,
                 use: ['script-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "resolve-url-loader"
+                },
+                {
+                    loader: "sass-loader?sourceMap" // compiles Sass to CSS
+                }]
             }
         ]
     },
