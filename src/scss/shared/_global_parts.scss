@@ -1,0 +1,245 @@
+$grid-width: 940px;
+$grid-width-half: 470px;
+@mixin bg-image-default($x-size, $url) {
+    background-size: $x-size 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url($url);
+}
+
+@mixin bg-image($x-size, $y-size, $url) {
+    background-size: $x-size $y-size;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url($url);
+}
+
+@mixin transition($time, $type) {
+    -webkit-transition: all $time+s $type;
+    -moz-transition: all $time+s $type;
+    -ms-transition: all $time+s $type;
+    -o-transition: all $time+s $type;
+    transition: all $time+s $type;
+}
+
+@mixin transitionSpec($time, $type, $property) {
+    -webkit-transition: $property $time+s $type;
+    -moz-transition: $property $time+s $type;
+    -ms-transition: $property $time+s $type;
+    -o-transition: $property $time+s $type;
+    transition: $property $time+s $type;
+}
+
+@mixin transitionFree($prop) {
+    -webkit-transition: $prop;
+    -moz-transition: $prop;
+    -ms-transition: $prop;
+    -o-transition: $prop;
+    transition: $prop;
+}
+
+@mixin rotate($degree) {
+    -webkit-transform: rotate($degree+deg);
+    -moz-transform: rotate($degree+deg);
+    -ms-transform: rotate($degree+deg);
+    -o-transform: rotate($degree+deg);
+    transform: rotate($degree+deg);
+}
+
+@mixin button($width, $height, $bg-color, $font-size, $color, $center) {
+    @if($width !='') {
+        width: $width;
+    }
+    @if($height !='') {
+        height: $height;
+    }
+    @if($bg-color !='') {
+        background-color: $bg-color;
+    }
+    @if($font-size !='') {
+        font-size: $font-size;
+    }
+    @if($color !='') {
+        color: $color;
+    }
+    @if($center=='center') {
+        @extend %flex-center;
+        @extend %total-center-col;
+    }
+    position: relative;
+    cursor: pointer;
+    @include transition(0.3, ease);
+}
+
+@mixin absolute($top, $right, $bottom, $left) {
+    @if($left !='') {
+        left: $left;
+    }
+    @if($top !='') {
+        top: $top;
+    }
+    @if($right !='') {
+        right: $right;
+    }
+    @if($bottom !='') {
+        bottom: $bottom;
+    }
+    position: absolute;
+}
+
+@mixin absolute-simple() {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@mixin absolute-full() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+@mixin font($size, $weight, $lineHeight) {
+    @if($size !='') {
+        font-size: $size;
+    }
+    @if($weight !='') {
+        font-weight: $weight;
+    }
+    @if($lineHeight !='') {
+        line-height: $lineHeight;
+    }
+}
+
+@mixin dimen($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin overlay($opacity, $rgbColor) {
+    @include absolute(0, '', '', 0);
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba($rgbColor, $opacity);
+    z-index: 10;
+}
+
+@mixin default-width() {
+    width: $grid-width;
+    margin: 0 auto;
+}
+
+@mixin flex() {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+}
+
+@mixin flex-center-horizontal() {
+    @include flex();
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+@mixin flex-center-vertical() {
+    @include flex();
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+@mixin flex-total-center() {
+    @include flex();
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+@mixin flex-end() {
+    @include flex();
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+@mixin flex-start() {
+    @include flex();
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+}
+
+@mixin flex-baseline() {
+    @include flex();
+    -webkit-align-items: baseline;
+    align-items: baseline;
+}
+
+@mixin transition() {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+@mixin overflow-hack() {
+    &:before,
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin box-shadow($shadowValue) {
+    -webkit-box-shadow: $shadowValue;
+    -moz-box-shadow: $shadowValue;
+    box-shadow: $shadowValue;
+}
+
+@mixin no-text-select() {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin yes-text-select() {
+    -moz-user-select: auto;
+    -khtml-user-select: auto;
+    -webkit-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+@mixin placehold() {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    &::-moz-placeholder {
+        @content
+    }
+    &:-ms-input-placeholder {
+        @content
+    }
+    &:-moz-placeholder {
+        @content
+    }
+}
+
+@mixin background-default() {
+    background-size: auto 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

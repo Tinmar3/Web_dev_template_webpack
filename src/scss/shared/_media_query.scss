@@ -1,0 +1,34 @@
+@include media('>large') {
+}
+
+@include media('<large') {
+}
+
+@include media('<large','>medium') {
+}
+
+@include media('<medium') {
+}
+
+@include media('<medium','>small') {
+}
+
+@include media('<small') {
+}
+
+@include media('<small','>smallest') {
+}
+
+@include media('<smallest') {
+}
+
+// mobile first
+
+// mobile first
+@media (min-width: 450px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

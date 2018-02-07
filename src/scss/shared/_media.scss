@@ -1,6 +1,6 @@
-$medium: 1200px;
-$small: 992px;
-$smaller: 768px;
+$large: 1200px;
+$medium: 992px;
+$small: 768px;
 $smallest: 450px;
 //
 @mixin media($breakpoint...) {
@@ -31,14 +31,14 @@ $smallest: 450px;
             $break1: number($breakStr1) + 'px';
         }
         @else {
-            @if($breakStr1=='medium') {
+            @if($breakStr1=='large') {
+                $break1: $large;
+            }
+            @else if($breakStr1=='medium') {
                 $break1: $medium;
             }
             @else if($breakStr1=='small') {
                 $break1: $small;
-            }
-            @else if($breakStr1=='smaller') {
-                $break1: $smaller;
             }
             @else if($breakStr1=='smallest') {
                 $break1: $smallest;
@@ -50,14 +50,14 @@ $smallest: 450px;
             $break2: number($breakStr2) + 'px';
         }
         @else {
-            @if($breakStr2=='medium') {
+            @if($breakStr2=='large') {
+                $break2: $large;
+            }
+            @else if($breakStr2=='medium') {
                 $break2: $medium;
             }
             @else if($breakStr2=='small') {
                 $break2: $small;
-            }
-            @else if($breakStr2=='smaller') {
-                $break2: $smaller;
             }
             @else if($breakStr2=='smallest') {
                 $break2: $smallest;
@@ -76,14 +76,14 @@ $smallest: 450px;
             $break: number($breakStr) + 'px';
         }
         @else {
-            @if($breakStr=='medium') {
+            @if($breakStr=='large') {
+                $break: $large;
+            }
+            @else if($breakStr=='medium') {
                 $break: $medium;
             }
             @else if($breakStr=='small') {
                 $break: $small;
-            }
-            @else if($breakStr=='smaller') {
-                $break: $smaller;
             }
             @else if($breakStr=='smallest') {
                 $break: $smallest;
